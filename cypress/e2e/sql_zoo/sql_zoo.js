@@ -1,3 +1,9 @@
+const answer_question = (question_index, answer) => {
+	cy.get("textarea").eq(question_index).clear().type(answer);
+	cy.findAllByText("Submit SQL").eq(question_index).click();
+	cy.get(".res").eq(question_index).should("contain", "Correct answer");
+};
+
 describe("Test Suite for SQL Zoo for Project Odin", () => {
 	beforeEach("Opens the page!", () => {
 		cy.visit("SQL_Tutorial");
@@ -97,5 +103,27 @@ describe("Test Suite for SQL Zoo for Project Odin", () => {
 
 		// Verify 7/7 score using the feedback class selector with have.text instead of contain
 		cy.get(".feedback").should("have.text", "Your score is: 7 out of 7");
+	});
+	it.only("verifies questions on 1 SELECT name", () => {
+		// Click on the SELECT name button and verify it takes us to the right page
+		cy.findAllByText("1 SELECT name").click();
+		cy.url().should("contain", "/SELECT_names");
+
+		// Answer all 15 questions on the page
+		answer_question(0, "SELECT name FROM world WHERE name LIKE 'Y%';");
+		answer_question(1, "SELECT name FROM world WHERE name LIKE '%Y';");
+		answer_question(2, "SELECT name FROM world WHERE name LIKE '%x%';");
+		answer_question(3, "SELECT name FROM world WHERE name LIKE '%land';");
+		answer_question(4, "SELECT name FROM world WHERE name LIKE 'C%' AND name LIKE '%ia';");
+		answer_question(5, "SELECT name FROM world WHERE name LIKE '%oo%';");
+		answer_question(6, "SELECT name FROM world WHERE name LIKE '%a%a%a%';");
+		answer_question(7, "SELECT name FROM world WHERE name LIKE '_t%' ORDER BY name;");
+		answer_question(8, "SELECT name FROM world WHERE name LIKE '%o__o%';");
+		answer_question(9, "SELECT name FROM world WHERE name LIKE '____';");
+		answer_question(10, "SELECT name FROM world WHERE name LIKE capital;");
+		answer_question(11, "SELECT name FROM world WHERE capital LIKE concat(name, ' City');");
+		answer_question(12, "SELECT capital, name FROM world WHERE capital LIKE concat('%', name, '%');");
+		answer_question(13, "SELECT capital, name FROM world WHERE capital LIKE concat(name, '%') AND NOT capital = name;");
+		answer_question(14, "SELECT name, REPLACE(capital, name, '') AS extension FROM world WHERE capital LIKE concat(name, '%') AND NOT REPLACE(capital, name, '') = '';");
 	});
 });

@@ -3,6 +3,7 @@
 		"test": "npx cypress open"
 	},
 	"devDependencies": {
+		"@testing-library/cypress": "^10.0.3",
 		"cypress": "^14.1.0"
 	}
 }
