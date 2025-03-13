@@ -37,7 +37,32 @@
 		"2": 1,
 		"3": 3,
 		"4": 1,
-		"6": 3,
-		"7": 2
+		"5": 3,
+		"6": 2
+	},
+	"3_SELECT_from_Nobel": {
+		"0": "SELECT yr, subject, winner FROM nobel WHERE yr = 1950;",
+		"1": "SELECT winner FROM nobel WHERE yr = 1962 AND subject = 'literature';",
+		"2": "SELECT yr, subject FROM nobel WHERE winner = 'Albert Einstein';",
+		"3": "SELECT winner FROM nobel WHERE subject = 'peace' AND yr >= 2000;",
+		"4": "SELECT * FROM nobel WHERE subject = 'literature' AND yr >= 1980 AND yr <= 1989;",
+		"5": "SELECT * FROM nobel WHERE winner IN('Theodore Roosevelt', 'Thomas Woodrow Wilson', 'Jimmy Carter', 'Barack Obama');",
+		"6": "SELECT winner FROM nobel WHERE winner LIKE 'John%';",
+		"7": "SELECT * FROM nobel WHERE (subject = 'physics' AND yr = 1980) OR (subject = 'chemistry' AND yr = 1984);",
+		"8": "SELECT * FROM nobel WHERE yr = 1980 AND subject NOT IN('chemistry', 'medicine');",
+		"9": "SELECT * FROM nobel WHERE (subject = 'Medicine' AND yr < 1910) OR (subject = 'Literature' AND yr >= 2004);",
+		"10": "SElECT * FROM nobel WHERE winner = 'Peter Grünberg';",
+		"11": "SELECT * FROM nobel WHERE winner = 'Eugene O''Neill';",
+		"12": "SELECT winner, yr, subject FROM nobel WHERE winner LIKE 'Sir%' ORDER BY yr DESC, winner;",
+		"13": "SELECT winner, subject FROM nobel WHERE yr = 1984 ORDER BY subject IN ('physics','chemistry'), subject, winner;"
+	},
+	"Nobel_Quiz": {
+		"0": 4,
+		"1": 2,
+		"2": 1,
+		"3": 2,
+		"4": 2,
+		"5": 2,
+		"6": 3
 	}
 }
