@@ -129,5 +129,31 @@
 		"4": 1,
 		"5": 2,
 		"6": 1
+	},
+	"7_More_JOIN_operations": {
+		"0": "SELECT id, title FROM movie WHERE yr = 1962;",
+		"1": "SELECT yr FROM movie WHERE title = 'Citizen Kane';",
+		"2": "SELECT id, title, yr FROM movie WHERE title LIKE('Star Trek%') ORDER BY yr;",
+		"3": "SELECT id FROM actor WHERE name = 'Glenn Close';",
+		"4": "SELECT id FROM movie WHERE title = 'Casablanca';",
+		"5": "SELECT name FROM movie JOIN casting ON movie.id = movieid JOIN actor ON actor.id = actorid WHERE movieid = 11768;",
+		"6": "SELECT name FROM movie JOIN casting ON movie.id = movieid JOIN actor ON actor.id = actorid WHERE title = 'Alien';",
+		"7": "SELECT title FROM movie JOIN casting ON movie.id = movieid JOIN actor ON actor.id = actorid WHERE name = 'Harrison Ford';",
+		"8": "SELECT title FROM movie JOIN casting ON movie.id = movieid JOIN actor ON actor.id = actorid WHERE name = 'Harrison Ford' AND ord != 1;",
+		"9": "SELECT title, name FROM movie JOIN casting ON movie.id = movieid JOIN actor ON actor.id = actorid WHERE yr = '1962' AND ord = 1;",
+		"10": "SELECT yr, COUNT(title) FROM movie JOIN casting ON movie.id = movieid JOIN actor ON actorid = actor.id WHERE name = 'Rock Hudson' GROUP BY yr HAVING COUNT(title) > 2;",
+		"11": "SELECT title, name FROM movie JOIN casting ON movie.id = movieid JOIN actor ON actorid = actor.id WHERE movieid IN(SELECT movieid FROM casting JOIN actor ON actorid = actor.id WHERE name = 'Julie Andrews') AND ord = 1;",
+		"12": "SELECT name FROM actor JOIN casting ON id = actorid WHERE ord = 1 GROUP BY name HAVING COUNT(ord) >= 15;",
+		"13": "SELECT title, COUNT(actorid) as 'actor_count' FROM movie JOIN casting ON id = movieid WHERE yr = 1978 GROUP BY title ORDER BY COUNT(actorid) DESC, title;",
+		"14": "SELECT name FROM actor JOIN casting ON id = actorid WHERE movieid IN(SELECT movieid FROM casting JOIN actor ON actorid = id WHERE name = 'Art Garfunkel') AND name != 'Art Garfunkel';"
+	},
+	"JOIN_Quiz_2": {
+		"0": 2,
+		"1": 4,
+		"2": 2,
+		"3": 1,
+		"4": 3,
+		"5": 2,
+		"6": 1
 	}
 }
