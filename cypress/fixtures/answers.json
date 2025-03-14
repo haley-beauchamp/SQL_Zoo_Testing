@@ -86,7 +86,7 @@
 		"5": 1,
 		"6": 1
 	},
-	"SUM_and_COUNT": {
+	"5_SUM_and_COUNT": {
 		"0": "SELECT SUM(population) FROM world;",
 		"1": "SELECT DISTINCT continent FROM world;",
 		"2": "SELECT SUM(gdp) as 'Africa_GDP' FROM world WHERE continent = 'Africa';",
@@ -105,5 +105,29 @@
 		"5": 4,
 		"6": 3,
 		"7": 3
+	},
+	"6_JOIN": {
+		"0": "SELECT matchid, player FROM goal WHERE teamid = 'GER';",
+		"1": "SELECT id, stadium, team1, team2 FROM game WHERE id = 1012;",
+		"2": "SELECT player, teamid, stadium, mdate FROM game JOIN goal ON (id=matchid) WHERE teamid = 'GER';",
+		"3": "SELECT team1, team2, player FROM game JOIN goal ON (id=matchid) WHERE player LIKE 'Mario%';",
+		"4": "SELECT player, teamid, coach, gtime FROM goal JOIN eteam on teamid = id WHERE gtime <= 10;",
+		"5": "SELECT mdate, teamname FROM game JOIN eteam ON team1 = eteam.id WHERE coach = 'Fernando Santos';",
+		"6": "SELECT player FROM game JOIN goal ON id = matchid WHERE stadium = 'National Stadium, Warsaw';",
+		"7": "SELECT DISTINCT player FROM game JOIN goal ON matchid = id WHERE (team1 = 'GER' OR team2 = 'GER') AND NOT teamid = 'GER';",
+		"8": "SELECT teamname, COUNT(matchid) AS 'goals_scored' FROM eteam JOIN goal ON id=teamid GROUP BY teamname;",
+		"9": "SELECT stadium, COUNT(matchid) AS 'goals_scored' FROM game JOIN goal ON id = matchid GROUP BY stadium;",
+		"10": "SELECT matchid, mdate, COUNT(matchid) AS 'goals_scored' FROM game JOIN goal ON id = matchid WHERE (team1 = 'POL' OR team2 = 'POL') GROUP BY matchid;",
+		"11": "SELECT matchid, mdate, COUNT(matchid) FROM game JOIN goal ON id = matchid WHERE teamid = 'GER' GROUP BY matchid;",
+		"12": "SELECT mdate, team1, SUM(CASE WHEN teamid = team1 THEN 1 ELSE 0 END) AS score1, team2, SUM(CASE WHEN teamid = team2 THEN 1 ELSE 0 END) AS score2 FROM game LEFT JOIN goal ON matchid = id GROUP BY mdate, matchid, team1, team2;"
+	},
+	"JOIN_Quiz": {
+		"0": 3,
+		"1": 2,
+		"2": 0,
+		"3": 0,
+		"4": 1,
+		"5": 2,
+		"6": 1
 	}
 }
