@@ -185,5 +185,30 @@
 		"5": "SELECT subject, ROUND(SUM(response * A_STRONGLY_AGREE) / SUM(response), 0) FROM nss WHERE question='Q22' AND (subject='(8) Computer Science' OR subject='(H) Creative Arts and Design') GROUP BY subject;",
 		"6": "SELECT institution, ROUND(SUM(response * score) / SUM(response), 0) AS 'avg_score' FROM nss WHERE question='Q22' AND (institution LIKE '%Manchester%') GROUP BY institution;",
 		"7": "SELECT institution, SUM(sample), SUM(CASE WHEN subject = '(8) Computer Science' THEN sample ELSE 0 END) FROM nss WHERE question='Q01' AND (institution LIKE '%Manchester%') GROUP BY institution;"
+	},
+	"9-_Window_Function": {
+		"0": "SELECT lastName, party, votes FROM ge WHERE constituency = 'S14000024' AND yr = 2017 ORDER BY votes DESC;",
+		"1": "SELECT party, votes, RANK() OVER (ORDER BY votes DESC) as posn FROM ge WHERE constituency = 'S14000024' AND yr = 2017 ORDER BY party;",
+		"2": "SELECT yr, party, votes, RANK() OVER (PARTITION BY yr ORDER BY votes DESC) as posn FROM ge WHERE constituency = 'S14000021' ORDER BY party, yr;",
+		"3": "SELECT constituency, party, votes, RANK() OVER (PARTITION BY constituency ORDER BY votes DESC) as posn FROM ge WHERE constituency BETWEEN 'S14000021' AND 'S14000026' AND yr  = 2017 ORDER BY posn, constituency, votes DESC;",
+		"4": "SELECT constituency, party FROM ge x WHERE constituency BETWEEN 'S14000021' AND 'S14000026' AND yr  = 2017 AND party = (SELECT party FROM ge y WHERE x.constituency = y.constituency AND yr  = 2017 ORDER BY votes DESC LIMIT 1) ORDER BY constituency;",
+		"5": ""
+	},
+	"9_Self_join": {
+		"0": "SELECT COUNT(*) FROM stops;",
+		"1": "SELECT id FROM stops WHERE name = 'Craiglockhart';",
+		"2": "SELECT id, name FROM stops JOIN route on id = stop WHERE num = '4' AND company = 'LRT';",
+		"3": "SELECT company, num, COUNT(*) FROM route WHERE stop = 149 OR stop = 53 GROUP BY company, num HAVING (COUNT(*) = 2);",
+		"4": "SELECT a.company, a.num, a.stop, b.stop FROM route a JOIN route b ON (a.company=b.company AND a.num=b.num) WHERE a.stop=53 AND b.stop = 149;",
+		"5": "SELECT a.company, a.num, stopa.name, stopb.name FROM route a JOIN route b ON(a.company=b.company AND a.num=b.num) JOIN stops stopa ON (a.stop=stopa.id) JOIN stops stopb ON (b.stop=stopb.id) WHERE stopa.name='Craiglockhart' AND stopb.name = 'London Road';",
+		"6": "SELECT DISTINCT a.company, a.num FROM route a JOIN route b ON (a.company = b.company AND a.num = b.num) WHERE a.stop=115 AND b.stop = 137;",
+		"7": "SELECT a.company, a.num FROM route a JOIN route b ON (a.company=b.company AND a.num=b.num) JOIN stops stopa ON (a.stop=stopa.id) JOIN stops stopb ON (b.stop=stopb.id) WHERE stopa.name='Craiglockhart' AND stopb.name = 'Tollcross';",
+		"8": "SELECT stopb.name, a.company, a.num FROM route a JOIN route b ON (a.company=b.company AND a.num=b.num) JOIN stops stopa ON (a.stop=stopa.id) JOIN stops stopb ON (b.stop=stopb.id) WHERE stopa.name='Craiglockhart';",
+		"9": ""
+	},
+	"Self_join_Quiz": {
+		"0": 2,
+		"1": 4,
+		"2": 3
 	}
 }
