@@ -64,5 +64,26 @@
 		"4": 2,
 		"5": 2,
 		"6": 3
+	},
+	"4_SELECT_within_SELECT": {
+		"0": "SELECT name FROM world WHERE population > (SELECT population FROM world WHERE name='Russia');",
+		"1": "SELECT name FROM world WHERE continent = 'Europe' AND gdp/population > (SELECT gdp/population FROM world WHERE name = 'United Kingdom');",
+		"2": "SELECT name, continent FROM world WHERE continent IN (SELECT continent FROM world WHERE name = 'Argentina' UNION SELECT continent FROM world WHERE name = 'Australia') ORDER BY name;",
+		"3": "SELECT name, population FROM world WHERE population > (SELECT population FROM world WHERE name = 'United Kingdom') AND population < (SELECT population FROM world WHERE name = 'Germany');",
+		"4": "SELECT name, CONCAT(ROUND(population / (SELECT population FROM world WHERE name = 'Germany') * 100, 0), '%') AS population_as_percentage_of_german_population FROM world WHERE continent = 'Europe';",
+		"5": "SELECT name FROM world WHERE gdp > ALL(SELECT gdp FROM world WHERE continent = 'Europe' AND gdp > 0);",
+		"6": "SELECT continent, name, area FROM world x WHERE area >= ALL(SELECT area FROM world y WHERE y.continent = x.continent AND population > 0);",
+		"7": "SELECT continent, name FROM world x WHERE name = (SELECT name FROM world y WHERE y.continent = x.continent ORDER BY name LIMIT 1);",
+		"8": "SELECT name, continent, population FROM world WHERE continent IN(SELECT DISTINCT continent FROM world WHERE continent NOT IN (SELECT continent FROM world WHERE population > 25000000));",
+		"9": "SELECT name, continent FROM world x WHERE population > (3 * (SELECT population FROM world y WHERE x.continent = y.continent ORDER BY population DESC LIMIT 1 OFFSET 1));"
+	},
+	"Nested_SELECT_Quiz": {
+		"0": 2,
+		"1": 1,
+		"2": 0,
+		"3": 3,
+		"4": 1,
+		"5": 1,
+		"6": 1
 	}
 }
