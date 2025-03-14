@@ -85,5 +85,25 @@
 		"4": 1,
 		"5": 1,
 		"6": 1
+	},
+	"SUM_and_COUNT": {
+		"0": "SELECT SUM(population) FROM world;",
+		"1": "SELECT DISTINCT continent FROM world;",
+		"2": "SELECT SUM(gdp) as 'Africa_GDP' FROM world WHERE continent = 'Africa';",
+		"3": "SELECT COUNT(name) AS 'countries_with_area_over_1000000' FROM world WHERE area >= 1000000;",
+		"4": "SELECT SUM(population) as 'combined_population_estonia_latvia_lithuania' FROM world WHERE name IN('Estonia', 'Latvia', 'Lithuania');",
+		"5": "SELECT continent, COUNT(name) AS 'country_count' FROM world GROUP BY continent;",
+		"6": "SELECT continent, COUNT(name) FROM world WHERE population >= 10000000 GROUP BY continent;",
+		"7": "SELECT continent FROM world GROUP BY continent HAVING (SUM(population) > 100000000);"
+	},
+	"SUM_and_COUNT_Quiz": {
+		"0": 2,
+		"1": 0,
+		"2": 3,
+		"3": 4,
+		"4": 1,
+		"5": 4,
+		"6": 3,
+		"7": 3
 	}
 }
